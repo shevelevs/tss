@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TopSecretSanta.Models.Game>
+
+@{
+    ViewBag.Title = "Games - Index";
+}
+
+<h2>@ViewBag.PageTitle</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequireNicknames)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfPlayers)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequireNicknames)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfPlayers)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.GameId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GameId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GameId })
+        </td>
+    </tr>
+}
+
+</table>

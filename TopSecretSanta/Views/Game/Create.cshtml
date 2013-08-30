@@ -1,0 +1,54 @@
+﻿@model TopSecretSanta.Models.Game
+
+@{
+    ViewBag.Title = "Create a game";
+}
+
+<h2>New game</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Game</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Deadline)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Deadline)
+            @Html.ValidationMessageFor(model => model.Deadline)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RequireNicknames)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RequireNicknames)
+            @Html.ValidationMessageFor(model => model.RequireNicknames)
+        </div>
+
+        @Html.HiddenFor(model => model.OwnerId)
+        @Html.HiddenFor(model => model.DateCreated)
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

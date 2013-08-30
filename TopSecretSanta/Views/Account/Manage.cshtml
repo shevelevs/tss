@@ -1,0 +1,36 @@
+﻿@model TopSecretSanta.Models.ManageAccountModel
+@{
+    ViewBag.Title = "Your Account";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial", Model.Password)
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial", Model.Password)
+}
+
+<hr />
+
+@Html.Partial("_UserProfile", Model.Profile)
+
+<hr />
+
+<section id="externalLogins">
+    @Html.Action("RemoveExternalLogins")
+
+    <h3>Add an external login</h3>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Confirm";
+}
+
+<h2>Account confirmation</h2>
+
+@if (ViewBag.ErrorMessage == null) {
+    <p class="message-success">Confirmation is successful. You can log into your account.</p>
+}
+else {
+    <p class="message-error">Could not complete account confirmation. Please make sure url has not been truncated.</p>
+}

@@ -1,0 +1,98 @@
+﻿@model TopSecretSanta.Models.Game
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Game</legend>
+
+        @Html.HiddenFor(model => model.GameId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Deadline)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Deadline)
+            @Html.ValidationMessageFor(model => model.Deadline)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RequireNicknames)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RequireNicknames)
+            @Html.ValidationMessageFor(model => model.RequireNicknames)
+        </div>
+
+        @Html.HiddenFor(model => model.DateCreated)
+        @Html.HiddenFor(model => model.OwnerId)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+@using (Html.BeginForm("AddInvitation", "Game")) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.GameId)
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Players) {
+                <tr>
+                    <td>@Html.DisplayName(p.UserProfile.FullName)</td>
+                    <td>
+                        @Html.ActionLink("Delete", "DeletePlayer", new { id = p.PlayerId })
+                    </td>
+                </tr>
+            }
+            @foreach (var i in Model.Invitations) {
+                <tr>
+                    <td>@Html.Encode(i.Email)</td>
+                    <td>
+                        @Html.ActionLink("Delete", "DeleteInvitation", new { id = i.InvitationId })
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    @Html.TextBox("Email")
+                    @Html.TextArea("Message")
+                </td>
+                <td>
+                    <input type="submit" value="Add" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

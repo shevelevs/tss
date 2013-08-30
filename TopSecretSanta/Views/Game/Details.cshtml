@@ -1,0 +1,59 @@
+﻿@model TopSecretSanta.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Game</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Deadline)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Deadline)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Owner)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Owner.FullName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RequireNicknames)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RequireNicknames)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Players)
+    </div>
+    <ul>
+        @foreach(var p in Model.Players) {
+            <li>@Html.DisplayName(p.UserProfile.FullName)</li>        
+        }
+    </ul>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.GameId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

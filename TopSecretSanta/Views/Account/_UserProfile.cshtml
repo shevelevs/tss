@@ -1,0 +1,38 @@
+﻿@model TopSecretSanta.Models.UserProfile
+
+@using (Html.BeginForm("UpdateProfile", "Account")) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>User Profile</legend>
+
+        <div class="display-label">
+             @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.UserName, new { Readonly = "Readonly" })
+        </div>
+
+        <div class="display-label">
+             @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.Email)
+        </div>
+
+        <div class="display-label">
+             @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.FirstName)
+        </div>
+
+        <div class="display-label">
+             @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="display-field">
+            @Html.TextBoxFor(model => model.LastName)
+        </div>
+    </fieldset>
+    <input type="submit" value="Update profile" />
+}
